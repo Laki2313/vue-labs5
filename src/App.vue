@@ -2,19 +2,25 @@
   <div>
     <h1>Task Manager</h1>
 
-    <ItemForm />
-    <ItemList />
+    <ItemList :items="items" />
   </div>
 </template>
 
 <script>
-import ItemForm from "./components/ItemForm.vue"
 import ItemList from "./components/ItemList.vue"
 
 export default {
   components: {
-    ItemForm,
     ItemList
+  },
+  data() {
+    return {
+      items: [
+        { id: 1, title: "Зробити лабораторну", done: true },
+        { id: 2, title: "Вивчити Vue", done: true },
+        { id: 3, title: "Відпочити", done: false }
+      ]
+    }
   }
 }
 </script>
