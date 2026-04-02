@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <h1>Task Manager (Pinia)</h1>
-    <p>Підготовка до роботи з глобальним станом</p>
+    <p>Підготовка до роботи з глобальним станом.</p>
   </div>
 </template>
 
