@@ -1,20 +1,17 @@
 <template>
   <div class="app">
     <h1>Task Manager (Pinia)</h1>
-    <p>Підготовка до роботи з глобальним станом.</p>
+
+    <TaskList />
   </div>
 </template>
 
 <script>
+import TaskList from './components/TaskList.vue'
+
 export default {
-  name: "App"
+  components: {
+    TaskList
+  }
 }
 </script>
-
-<style>
-.app {
-  text-align: center;
-  margin-top: 50px;
-  font-family: Arial, sans-serif;
-}
-</style>
