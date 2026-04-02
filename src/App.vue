@@ -3,6 +3,7 @@
     <h1>Task Manager (Pinia)</h1>
 
     <TaskForm />
+    <TaskStats />
     <TaskList />
   </div>
 </template>
@@ -10,19 +11,13 @@
 <script>
 import TaskForm from './components/TaskForm.vue'
 import TaskList from './components/TaskList.vue'
+import TaskStats from './components/TaskStats.vue'
 
 export default {
   components: {
     TaskForm,
-    TaskList
+    TaskList,
+    TaskStats
   }
 }
 </script>
-
-<style>
-.app {
-  max-width: 500px;
-  margin: auto;
-  text-align: center;
-}
-</style>

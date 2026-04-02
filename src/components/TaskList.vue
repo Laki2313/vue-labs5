@@ -3,7 +3,7 @@
     <h2>Список задач</h2>
 
     <ul>
-      <li v-for="task in store.tasks" :key="task.id">
+      <li v-for="task in store.filteredTasks" :key="task.id">
         <span :class="{ done: task.done }">
           {{ task.title }}
         </span>
