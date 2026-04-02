@@ -2,16 +2,19 @@
   <div>
     <h2>Список задач</h2>
 
-    <ul>
-      <li v-for="task in store.filteredTasks" :key="task.id">
-        <span :class="{ done: task.done }">
-          {{ task.title }}
-        </span>
+    <div v-for="task in store.tasks" :key="task.id" class="task">
+      <div>
+        <p :class="{ done: task.done }">{{ task.title }}</p>
+        <small>
+          {{ task.done ? '✔ Виконано' : '❌ Не виконано' }}
+        </small>
+      </div>
 
-        <button @click="store.toggleTask(task.id)">✔</button>
-        <button @click="store.removeTask(task.id)">❌</button>
-      </li>
-    </ul>
+      <div class="buttons">
+        <button class="doneBtn" @click="store.toggleTask(task.id)">🔄</button>
+        <button class="deleteBtn" @click="store.removeTask(task.id)">🗑</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,8 +30,38 @@ export default {
 </script>
 
 <style>
+h2 {
+  margin-bottom: 15px;
+}
+
+.task {
+  background: #e5e7eb;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .done {
   text-decoration: line-through;
   color: gray;
+}
+
+.buttons button {
+  margin-left: 5px;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.doneBtn {
+  background: #86efac;
+}
+
+.deleteBtn {
+  background: #fca5a5;
 }
 </style>

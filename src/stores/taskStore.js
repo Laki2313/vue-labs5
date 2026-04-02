@@ -2,11 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
-    tasks: [
-      { id: 1, title: 'Вивчити Vue', done: false },
-      { id: 2, title: 'Зробити лабораторну', done: true }
-    ],
-    filter: 'all' // all | active | done
+    tasks: [],
+    filter: 'all'
   }),
 
   getters: {
@@ -30,21 +27,44 @@ export const useTaskStore = defineStore('taskStore', {
   },
 
   actions: {
+
+    loadFromStorage() {
+      const data = localStorage.getItem('tasks')
+      if (data) {
+        this.tasks = JSON.parse(data)
+      } else {
+
+        this.tasks = [
+          { id: 1, title: 'Вивчити Vue', done: false },
+          { id: 2, title: 'Зробити лабораторну', done: true }
+        ]
+      }
+    },
+
+    saveToStorage() {
+      localStorage.setItem('tasks', JSON.stringify(this.tasks))
+    },
+
     addTask(title) {
       this.tasks.push({
         id: Date.now(),
         title,
         done: false
       })
+      this.saveToStorage()
     },
 
     toggleTask(id) {
       const task = this.tasks.find(t => t.id === id)
-      if (task) task.done = !task.done
+      if (task) {
+        task.done = !task.done
+        this.saveToStorage()
+      }
     },
 
     removeTask(id) {
       this.tasks = this.tasks.filter(t => t.id !== id)
+      this.saveToStorage()
     },
 
     setFilter(value) {
